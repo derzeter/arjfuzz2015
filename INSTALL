@@ -1,0 +1,41 @@
+
+# ARJFUZZ - URL Fuzzer dictionnary based, multiple thread based.
+#
+# Uses 10 threads to scan website (NUM_THREADS_MAX)
+# Uses 3 transversals (TRANSVERSALS_MAX) - can be set from command line. Recommends one to start with...
+# Doesn't support web proxy, as it's to test your own servers - shouldn't be needed.
+# However, if you need proxy support - should be easy to add.
+# 
+# v0.1 - G - Original : 18.03.2013
+# v0.2 - G - fixed 2 segmentation faults -u / -p : 19.03.13
+# v0.3 - G - fixed 1 mutex segfault + changed parameter from -p to -o in usage : 20.03.13
+# v0.4 - G - fixed 2 issues : word[] overflow + -o argument issue
+# v0.5 - G - added shell usage to arjfuzz + created independant scan function
+# v0.7 - G - split scan() function with set_maxcount, and fixe a log file issue with http://
+# v0.8 - G - Corrected some buffer overflow issue
+#
+# 1. How to install :
+#
+# make
+# make install
+#
+# Please note that you will need libcurl(devel) and libpthread to compile arjfuzz.
+#
+# 2. How to use :
+#
+# Add word into dictionnary       -w word
+# Add file into dictionnary       -f file
+# Scan                            -u url [-t <number of transversals> -o <false-positive-string> -O <logfile>]
+#                                -u https://www.testserver.com
+#                                -u https://www.testserver.com -t 3
+#                                -u https://www.testserver.com -t 3 -o Home
+#                                -u https://www.testserver.com -t 3 -o Home -O /tmp/log.txt
+#
+# You prefer shell ? ./arjfuzz
+#
+# 3. If the dictionnary is messed up :
+#
+# The dictionnary should be lines of no more than 255 chars. Each words to be separated by \n. Now that you know these rules,
+# it's time for editing :>
+
+
