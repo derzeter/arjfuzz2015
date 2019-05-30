@@ -99,8 +99,10 @@ log_file (char *local_logfile, char *log, char *localurl)
 
   if (strlen (local_logfile) == 0)
     {
-
+      local_logfile = (char *) malloc (255);
       bzero (local_logfile, 255);
+      sprintf(local_logfile,"%s",url);
+
 
      if(strstr(localurl,"://")==NULL) {
       sprintf (local_logfile, "%s.%d.%02d.%02d.log", localurl,
